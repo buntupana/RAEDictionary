@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -20,33 +22,66 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+//    dataBinding.enabled = true
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
+
+    ext {
+        support = "27.1.0"
+        constraint = "1.0.2"
+    }
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // Support libraries
+    implementation 'com.android.support:appcompat-v7:' + ext.support
+    implementation 'com.android.support:support-v13:' + ext.support
+    implementation 'com.android.support:support-v4:' + ext.support
+    implementation 'com.android.support:design:' + ext.support
+    implementation 'com.android.support.constraint:constraint-layout:' + ext.constraint
+
+    // Test libraries
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:1.0.0"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 
     // Room
     implementation "android.arch.persistence.room:runtime:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 
     // Test helpers for LiveData
-    testImplementation "android.arch.core:core-testing:1.0.0"
+    testImplementation "android.arch.core:core-testing:1.1.0"
 
     // Test helpers for Room
     testImplementation "android.arch.persistence.room:testing:1.0.0"
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation "com.squareup.retrofit2:retrofit:2.3.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.3.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+
+    // Dagger
+    implementation 'com.google.dagger:dagger-android:2.14.1'
+    implementation 'com.google.dagger:dagger-android-support:2.14.1'
+    // if you use the support libraries
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.14.1'
+
+    // RxJava
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.8'
+
+    // Databinding
+    kapt "com.android.databinding:compiler:3.0.1"
 
     // Jsoup library to decode html
     implementation 'org.jsoup:jsoup:1.11.2'
