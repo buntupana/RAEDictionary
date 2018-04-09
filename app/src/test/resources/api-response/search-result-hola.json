@@ -1,0 +1,35 @@
+ {
+	"approx": 0,
+	"res": [
+		{
+			"header": "hola.",
+			"id": "KYtLWBc",
+			"grp": 0
+		},
+		{
+			"header": "holanda.",
+			"id": "KYwHQ7M",
+			"grp": 1
+		},
+		{
+			"header": "holandés, sa.",
+			"id": "KYwyn6b",
+			"grp": 2
+		},
+		{
+			"header": "holandesa.",
+			"id": "KYx60jS",
+			"grp": 3
+		},
+		{
+			"header": "holandeta.",
+			"id": "KYypfaS",
+			"grp": 4
+		},
+		{
+			"header": "holandilla.",
+			"id": "KYzk6Ku",
+			"grp": 5
+		}
+	]
+}
